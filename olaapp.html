@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ola App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .map {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ddd;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .modal-content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ola App</h1>
+        <div class="map" id="map"></div>
+        <div class="search-bar">
+            <input type="text" id="pickup" placeholder="Enter pickup location">
+            <input type="text" id="drop" placeholder="Enter drop location">
+            <button class="btn btn-primary" id="search-btn">Search</button>
+        </div>
+        <button class="btn btn-primary" id="book-btn" style="display: none;">Book Ride</button>
+    </div>
+    <div class="modal fade" id="ride-modal" tabindex="-1" role="dialog" aria-labelledby="ride-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h5 class="modal-title" id="ride-modal-label">Select Ride Option</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body">
+                    <div class="ride-option">
+                        <h6>Micro</h6>
+                        <p>Fare: ₹10</p>
+                        <button class="btn btn-primary" id="micro-btn">Select</button>
+                    </div>
+                    <div class="ride-option">
+                        <h6>Mini</h6>
+                        <p>Fare: ₹15</p>
+                        <button class="btn btn-primary" id="mini-btn">Select</button>
+                    </div>
+                    <div class="ride-option">
+                        <h6>Prime</h6>
+                        <p>Fare: ₹20</p>
+                        <button class="btn btn-primary" id="prime-btn">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="booking-modal" tabindex="-1" role="dialog" aria-labelledby="booking-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h5 class="modal-title" id="booking-modal-label">Confirm Booking</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body">
+                    <p>Are you sure you want to book the ride?</p>
+                    <button class="btn btn-primary" id="confirm-btn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="payment-modal" tabindex="-1" role="dialog" aria-labelledby="payment-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h5 class="modal-title" id="payment-modal-label">Make Payment</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body">
+                    <p>Enter your payment details:</p>
+                    <input type="text" id="card-number" placeholder="Card Number">
+                    <input type="text" id="cvv" placeholder="CVV">
+                    <button class="btn btn-primary" id="pay-btn">Pay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#search-btn").click(function () {
+                $("#book-btn").show();
+            });
+            $("#book-btn").click(function () {
+                $("#ride-modal").modal("show");
+            });
+            $("#micro-btn").click(function () {
+                $("#ride-modal").modal("hide");
+                $("#booking-modal").modal("show");
+            });
+            $("#mini-btn").click(function () {
+                $("#ride-modal").modal("hide");
+                $("#booking-modal").modal("show");
+            });
+            $("#prime-btn").click(function () {
+                $("#ride-modal").modal("hide");
+                $("#booking-modal").modal("show");
+            });
+            $("#confirm-btn").click(function () {
+                $("#booking-modal").modal("hide");
+                $("#payment-modal").modal("show");
+            });
+            $("#pay-btn").click(function () {
+                alert("Payment successful!");
+            });
+        });
+    </script>
+</body>
+</html>
